@@ -4,6 +4,7 @@ package com.DH.Integrador.Controller;
 import com.DH.Integrador.model.Paciente;
 import com.DH.Integrador.service.PacienteService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public class PacienteController {
     private final PacienteService pacienteService;
 
     @PostMapping("/add")
-    public void Agregar(@RequestBody Paciente paciente){
+    public ResponseEntity<String> Agregar(@RequestBody Paciente paciente){
         pacienteService.agregar(paciente);
+        return ResponseEntity.ok(paciente + "agregado");
     }
 
     @GetMapping()
@@ -26,8 +28,8 @@ public class PacienteController {
     }
 
     @GetMapping("find/{dni}")
-    public Paciente findByMatricula(@PathVariable String dni){
-        return pacienteService.findByMatricula(dni);
+    public Paciente findByDni(@PathVariable String dni){
+        return pacienteService.findByDni(dni);
     }
 
     @PutMapping("/update")
@@ -36,8 +38,9 @@ public class PacienteController {
     }
 
     @DeleteMapping("delete")
-    public void eliminar(@RequestBody int id){
+    public ResponseEntity<String> eliminar(@RequestBody int id){
         pacienteService.eliminar(id);
+        return ResponseEntity.ok("Paciente con id: "+id + " eliminado");
     }
 
 

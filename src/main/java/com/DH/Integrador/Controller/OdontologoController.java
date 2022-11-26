@@ -36,7 +36,7 @@ public class OdontologoController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity<String>  eliminar(@PathVariable int id){
         odontologoService.eliminarById(id);
-        return ResponseEntity.ok("id: "+id + " eliminado");
+        return ResponseEntity.ok("Odontologo con id: "+id + " eliminado");
 
     }
 

@@ -26,7 +26,7 @@ public class PacienteService {
         repository.deleteById(id);
     }
 
-    public Paciente findByMatricula(String dni){
+    public Paciente findByDni(String dni){
         return repository.findBydni(dni);
     }
 
