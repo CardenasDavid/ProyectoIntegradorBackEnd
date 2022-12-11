@@ -1,5 +1,6 @@
 package com.DH.Integrador.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ public class Odontologo {
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "odontologo_id")
-    @JsonManagedReference(value = "odontologoRef")
+    @JsonBackReference(value = "odontologoRef")
     private Set<Turno> turnos=new HashSet<>();
 
 }

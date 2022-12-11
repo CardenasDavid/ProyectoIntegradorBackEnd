@@ -1,5 +1,6 @@
 package com.DH.Integrador.service;
 
+import com.DH.Integrador.exceptions.PacienteNotFoundException;
 import com.DH.Integrador.model.Paciente;
 import com.DH.Integrador.repository.PacienteRepository;
 import lombok.AllArgsConstructor;
@@ -26,10 +27,9 @@ public class PacienteService {
         repository.deleteById(id);
     }
 
-    public Paciente findByDni(String dni){
-        return repository.findBydni(dni);
+    public Paciente findByDni(String dni) throws PacienteNotFoundException {
+
+        return repository.findBydni(dni).orElseThrow(()->new PacienteNotFoundException());
     }
-
-
 
 }

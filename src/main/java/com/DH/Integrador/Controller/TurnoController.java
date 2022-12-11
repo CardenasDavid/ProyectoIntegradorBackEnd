@@ -1,5 +1,8 @@
 package com.DH.Integrador.Controller;
 
+import com.DH.Integrador.exceptions.OdontologoNotFoundException;
+import com.DH.Integrador.exceptions.PacienteNotFoundException;
+import com.DH.Integrador.exceptions.TurnoNotFoundException;
 import com.DH.Integrador.model.Turno;
 import com.DH.Integrador.service.TurnoService;
 import lombok.AllArgsConstructor;
@@ -18,7 +21,7 @@ public class TurnoController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<String> Agregar(@RequestBody Turno turno){
+    public ResponseEntity<String> Agregar(@RequestBody Turno turno) throws OdontologoNotFoundException, PacienteNotFoundException {
            turnoService.agregar(turno);
            return ResponseEntity.ok(turno + "agregado");
     }
@@ -30,7 +33,7 @@ public class TurnoController {
 
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> eliminarById(@PathVariable int id){
+    public ResponseEntity<String> eliminarById(@PathVariable int id) throws TurnoNotFoundException {
         turnoService.eliminar(id);
         return ResponseEntity.ok("Turno con id: "+id + " eliminado");
     }

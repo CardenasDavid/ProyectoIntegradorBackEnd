@@ -1,6 +1,7 @@
 package com.DH.Integrador.Controller;
 
 
+import com.DH.Integrador.exceptions.PacienteNotFoundException;
 import com.DH.Integrador.model.Paciente;
 import com.DH.Integrador.service.PacienteService;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,7 @@ public class PacienteController {
     }
 
     @GetMapping("find/{dni}")
-    public Paciente findByDni(@PathVariable String dni){
+    public Paciente findByDni(@PathVariable String dni) throws PacienteNotFoundException {
         return pacienteService.findByDni(dni);
     }
 

@@ -1,6 +1,6 @@
 package com.DH.Integrador.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,18 +20,19 @@ public class Turno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
+    private LocalDateTime fecha;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "odontologo_id", nullable = false)
-    @JsonBackReference(value = "odontologoRef")
-    private Odontologo odontologo;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paciente_id", nullable = false)
-    @JsonBackReference(value = "pacienteRef")
+    //@JsonManagedReference(value = "pacienteRef")
     private Paciente paciente;
 
-    private LocalDateTime fecha;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "odontologo_id", nullable = false)
+    //@JsonManagedReference(value = "odontologoRef")
+    private Odontologo odontologo;
+
+
 
 
 }

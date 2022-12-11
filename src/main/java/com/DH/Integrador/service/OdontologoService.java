@@ -1,5 +1,6 @@
 package com.DH.Integrador.service;
 
+import com.DH.Integrador.exceptions.OdontologoNotFoundException;
 import com.DH.Integrador.model.Odontologo;
 import com.DH.Integrador.repository.OdontologoRepository;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,13 @@ public class OdontologoService {
     public void eliminarById(int id){
         repository.deleteById(id);
     }
+    public void deleteByMatricula(String mat)throws OdontologoNotFoundException {
+        repository.findBymatricula(mat).orElseThrow(()-> new OdontologoNotFoundException());
+        repository.deleteByMatricula(mat);
+    }
 
-    public Odontologo findBymatricula(String mat){
-        return repository.findBymatricula(mat);
+    public Odontologo findBymatricula(String mat) throws OdontologoNotFoundException {
+        return repository.findBymatricula(mat).orElseThrow(()-> new OdontologoNotFoundException());
     }
 
 }
