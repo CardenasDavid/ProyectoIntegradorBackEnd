@@ -39,7 +39,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("delete")
-    public ResponseEntity<String> eliminar(@RequestBody int id){
+    public ResponseEntity<String> eliminar(@RequestBody int id) throws PacienteNotFoundException {
         pacienteService.eliminar(id);
         return ResponseEntity.ok("Paciente con id: "+id + " eliminado");
     }

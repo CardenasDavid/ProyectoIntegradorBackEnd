@@ -23,7 +23,8 @@ public class PacienteService {
     public void modificar(Paciente paciente){
         repository.save(paciente);
     }
-    public void eliminar(int id){
+    public void eliminar(int id) throws PacienteNotFoundException {
+        repository.findById(id).orElseThrow(()->new PacienteNotFoundException());
         repository.deleteById(id);
     }
 
