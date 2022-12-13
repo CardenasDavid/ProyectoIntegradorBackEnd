@@ -24,10 +24,15 @@ public class GlobalExceptions {
         logger.error(exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
-    @ExceptionHandler({TurnoNotFoundException.class})
-    public ResponseEntity<?> error(TurnoNotFoundException exception){
+    @ExceptionHandler({ResourceNotFoundException.class})
+    public ResponseEntity<?> error(ResourceNotFoundException exception){
         logger.error(exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+    @ExceptionHandler({BadRequestException.class})
+    public ResponseEntity<String> error(BadRequestException exception){
+        logger.error(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 
 
