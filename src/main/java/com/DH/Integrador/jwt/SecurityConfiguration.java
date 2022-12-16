@@ -45,6 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/turnos**").hasAuthority("USER");
         http.
                 authorizeRequests().antMatchers("/usuario/add").permitAll();
+        http.
+                authorizeRequests().antMatchers(
+                        "/v3/api-docs/**","/swagger-ui.html",
+                        "/swagger-ui/**").permitAll();
         http.csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll().anyRequest().authenticated()
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
